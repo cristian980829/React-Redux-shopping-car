@@ -9,10 +9,12 @@ import {
 
 import { CarScreen } from '../components/car/CarScreen';
 import { ProductsScreen } from '../components/products/ProductsScreen';
+import { Navbar } from '../components/ui/Navbar';
 
 export const AppRouter = () => {
     return (
         <>
+            <Navbar />
 
             <Router>
                 <div>
