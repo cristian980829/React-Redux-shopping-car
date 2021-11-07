@@ -1,7 +1,21 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom';
+
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export const Navbar = () => {
+
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: -6,
+            top: 2,
+            border: `2px solid ${theme.palette.background.paper}`,
+            padding: '0 2px',
+        },
+    }));
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             
@@ -34,7 +48,12 @@ export const Navbar = () => {
                         exact
                         to="/car"
                     >
-                        Car
+
+                    <IconButton aria-label="cart">
+                        <StyledBadge badgeContent={5} color="primary">
+                            <ShoppingCartIcon color="primary"/>
+                        </StyledBadge>
+                    </IconButton>
                     </NavLink>
                 </ul>
             </div>
