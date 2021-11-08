@@ -62,6 +62,9 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
       };
     }
 
+    case types.CLEAR_CART:
+      return shoppingInitialState;
+
 
     default:
         return state;
