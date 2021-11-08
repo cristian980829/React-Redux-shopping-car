@@ -9,17 +9,15 @@ export const ProductsScreen = () => {
     },{name:"gaseosa",id:1256}]
 
     return (
-        <div>
+        <>
             <h3>Products</h3>
-            <div className="card-columns">
-                {products.map((product) => {
-                    return(
+            <div className="card-columns mt-4">
+                {
+                    products.map((product) => (
                         <ProductItem key={product.id} data={product} />
-                    )
-                    
-                    })
+                    ))
                 }
             </div>
-        </div>
+        </>
     )
 }
