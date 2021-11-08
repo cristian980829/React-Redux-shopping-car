@@ -5,11 +5,11 @@ import { CartItem } from './CartItem';
 import { clearCart } from '../../actions/cart';
 
 
-export const CarScreen = () => {
+export const CartScreen = () => {
 
     const dispatch = useDispatch();
     
-    const { cart } = useSelector( state => state.shoppingCar );
+    const { list } = useSelector( state => state.shoppingCar.cart );
 
     const clearCart_ = () => {
         dispatch( clearCart() );
@@ -32,7 +32,7 @@ export const CarScreen = () => {
                 </thead>
                 <tbody>
                 {
-                    cart.map((product) => (
+                    list.map((product) => (
                         <CartItem key={product.id} data={product} />
                     ))
                 }

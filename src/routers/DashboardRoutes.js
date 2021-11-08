@@ -6,7 +6,7 @@ import {
     Redirect
   } from 'react-router-dom';
 
-import { CarScreen } from '../components/car/CarScreen';
+import { CartScreen } from '../components/car/CartScreen';
 import { ProductsScreen } from '../components/products/ProductsScreen';
 import { Navbar } from '../components/ui/Navbar';
 
@@ -19,7 +19,7 @@ export const DashboardRoutes = () => {
                 <Switch> 
                     <Route exact path="/products" component={ ProductsScreen } />
                                 
-                    <Route exact path="/car" component={ CarScreen } />
+                    <Route exact path="/car" component={ CartScreen } />
 
                     <Redirect to="/products" />
                 </Switch>

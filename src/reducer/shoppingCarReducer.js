@@ -9,7 +9,10 @@ export const shoppingInitialState = {
     { id: 5, name: "Producto 5", price: 500 },
     { id: 6, name: "Producto 6", price: 600 },
   ],
-  cart: [],
+  cart: {
+    list: [],
+    totalQuantity: 0
+  },
 };
 
 export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
@@ -20,45 +23,62 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
         (product) => product.id === action.payload
       );
 
-      let itemInCart = state.cart.find((item) => item.id === newItem.id);
-
+      let itemInCart = state.cart.list.find((item) => item.id === newItem.id);
+      
       return itemInCart
         ? {
             ...state,
-            cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
+            cart: {
+              list: state.cart.list.map((item) =>
+                item.id === newItem.id
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+              ),
+              totalQuantity: state.cart.totalQuantity + 1
+            },
           }
         : {
             ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
+            cart: {
+              list: [...state.cart.list, { ...newItem, quantity: 1 }],
+              totalQuantity: state.cart.totalQuantity + 1
+            }
           };
     }
 
     case types.REMOVE_ONE_FROM_CART: {
-      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+      let itemToDelete = state.cart.list.find((item) => item.id === action.payload);
 
       return itemToDelete.quantity > 1
         ? {
             ...state,
-            cart: state.cart.map((item) =>
+            cart: {
+              list: state.cart.list.map((item) =>
               item.id === action.payload
                 ? { ...item, quantity: item.quantity - 1 }
                 : item
             ),
+            totalQuantity: state.cart.totalQuantity - 1
+            },
           }
         : {
             ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
+            cart: {
+              list: state.cart.list.filter((item) => item.id !== action.payload),
+              totalQuantity: state.cart.totalQuantity - 1
+            },
           };
     }
 
     case types.REMOVE_ALL_FROM_CART: {
+      const item = state.cart.list.find((item) => item.id === action.payload);
+      console.log(item);
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
+        cart: {
+          list: state.cart.list.filter((item) => item.id !== action.payload),
+          totalQuantity: state.cart.totalQuantity - item.quantity
+        },
       };
     }
 

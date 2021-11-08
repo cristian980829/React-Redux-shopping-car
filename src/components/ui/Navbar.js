@@ -5,8 +5,11 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
+
+    const { totalQuantity } = useSelector( state => state.shoppingCar.cart );
 
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
@@ -50,7 +53,7 @@ export const Navbar = () => {
                     >
 
                     <IconButton aria-label="cart">
-                        <StyledBadge badgeContent={5} color="primary">
+                        <StyledBadge badgeContent={totalQuantity} color="primary">
                             <ShoppingCartIcon color="primary"/>
                         </StyledBadge>
                     </IconButton>
