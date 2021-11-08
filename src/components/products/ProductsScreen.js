@@ -1,12 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { ProductItem } from './ProductItem';
 
 export const ProductsScreen = () => {
 
-    const products = [{
-        name:"leche",
-        id:123
-    },{name:"gaseosa",id:1256}]
+    const { products } = useSelector( state => state.shoppingCar );
+
+    console.log(products);
 
     return (
         <>
