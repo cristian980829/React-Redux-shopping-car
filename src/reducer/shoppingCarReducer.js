@@ -37,8 +37,33 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
           };
     }
 
-        default:
-            return state;
+    case types.REMOVE_ONE_FROM_CART: {
+      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+
+      return itemToDelete.quantity > 1
+        ? {
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === action.payload
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            ),
+          }
+        : {
+            ...state,
+            cart: state.cart.filter((item) => item.id !== action.payload),
+          };
     }
 
+    case types.REMOVE_ALL_FROM_CART: {
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
+      };
+    }
+
+
+    default:
+        return state;
+    }
 }

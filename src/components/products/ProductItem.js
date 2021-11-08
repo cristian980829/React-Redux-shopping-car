@@ -19,7 +19,8 @@ export const ProductItem = ({data}) => {
                 <h5 className="card-title">Id: {id}</h5>
                 <p className="card-text">{name}</p>
                 <span className="card-text">${price}.00</span>
-                <button onClick={ () => addToCart_(id) } className="btn btn-danger mt-2">Añadir</button>
+                <hr/>
+                <button onClick={ () => addToCart_(id) } className="btn btn-danger btn-block mt-2 ">Add to car</button>
             </div>
         </div>
     )

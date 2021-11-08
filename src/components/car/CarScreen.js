@@ -10,6 +10,7 @@ export const CarScreen = () => {
     return (
         <>
             <h3>Cart</h3>
+            <button className="btn btn-success mt-3 mb-2">Clean cart</button>
             <table class="table">
                 <thead class="table-light">
                     <tr className="text-center">

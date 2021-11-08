@@ -6,3 +6,11 @@ export const addToCart = (id) =>{
         payload: id
     }
 }
+
+export const deleteOneFromCart = (id) => (
+    { type: types.REMOVE_ONE_FROM_CART, payload: id}
+)
+
+export const deleteAllFromCart = (id) => (
+    { type: types.REMOVE_ALL_FROM_CART, payload: id}
+)
