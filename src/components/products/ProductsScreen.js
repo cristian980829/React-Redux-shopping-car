@@ -6,8 +6,6 @@ export const ProductsScreen = () => {
 
     const { products } = useSelector( state => state.shoppingCar );
 
-    console.log(products);
-
     return (
         <>
             <h3>Products</h3>
