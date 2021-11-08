@@ -20,7 +20,13 @@ export const ProductItem = ({data}) => {
                 <p className="card-text">{name}</p>
                 <span className="card-text">${price}.00</span>
                 <hr/>
-                <button onClick={ () => addToCart_(id) } className="btn btn-danger btn-block mt-2 ">Add to car</button>
+
+                <button onClick={ () => addToCart_(id) } className="btn btn-success btn-block mt-2 ">
+                    <i className="fas fa-cart-plus"></i> Add to car
+                </button>
+                <button className="btn btn-danger btn-block mt-2 ">
+                    <i className="fas fa-trash-alt"></i> Remove
+                </button>
             </div>
         </div>
     )

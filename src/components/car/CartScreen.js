@@ -15,12 +15,18 @@ export const CartScreen = () => {
         dispatch( clearCart() );
     }
 
+    let total = 0;
+
+    list.forEach(el => {
+        total += (el.price * el.quantity);
+    });
+
     return (
         <>
             <h3>Cart</h3>
             <button onClick={clearCart_} className="btn btn-success mt-3 mb-2">Clean cart</button>
-            <table class="table">
-                <thead class="table-light">
+            <table className="table">
+                <thead className="table-light">
                     <tr className="text-center">
                         <th scope="col">Id</th>
                         <th scope="col">Description</th>
@@ -38,6 +44,17 @@ export const CartScreen = () => {
                 }
                 </tbody>
             </table>
+
+            <hr/>
+
+            <div className="row">
+                <div className="col-md-1">
+                    <h5>Total: </h5> 
+                </div>
+                <div className="col"> 
+                    <span>${total}.00</span>
+                </div>
+            </div>
         </>
     )
 }

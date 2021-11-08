@@ -72,7 +72,6 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
 
     case types.REMOVE_ALL_FROM_CART: {
       const item = state.cart.list.find((item) => item.id === action.payload);
-      console.log(item);
       return {
         ...state,
         cart: {
