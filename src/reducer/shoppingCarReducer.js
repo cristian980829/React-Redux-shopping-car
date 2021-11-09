@@ -84,6 +84,23 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
     case types.CLEAR_CART:
       return shoppingInitialState;
 
+    case types.REMOVE_ONE_PRODUCT: {
+      const itemInCart = state.cart.list.find((item) => item.id === action.payload);
+      return itemInCart
+        ? {
+          ...state,
+          products: state.products.filter((item) => item.id !== action.payload),
+          cart: {
+            list: state.cart.list.filter((item) => item.id !== action.payload),
+            totalQuantity: state.cart.totalQuantity - itemInCart.quantity
+          }
+        }
+        : {
+          ...state,
+          products: state.products.filter((item) => item.id !== action.payload),
+        }
+    }
+
 
     default:
         return state;

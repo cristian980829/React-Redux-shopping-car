@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addToCart } from "../../actions/cart";
+import { addToCart, deleteOneProduct } from "../../actions/cart";
 
 export const ProductItem = ({data}) => {
 
@@ -11,6 +11,10 @@ export const ProductItem = ({data}) => {
 
     const addToCart_ = (id) => {
         dispatch( addToCart(id) );
+    }
+
+    const deleteProduct= (id) => {
+        dispatch( deleteOneProduct(id) );
     }
 
     return (
@@ -24,7 +28,7 @@ export const ProductItem = ({data}) => {
                 <button onClick={ () => addToCart_(id) } className="btn btn-success btn-block mt-2 ">
                     <i className="fas fa-cart-plus"></i> Add to car
                 </button>
-                <button className="btn btn-danger btn-block mt-2 ">
+                <button onClick={() => deleteProduct(id)} className="btn btn-danger btn-block mt-2 ">
                     <i className="fas fa-trash-alt"></i> Remove
                 </button>
             </div>
