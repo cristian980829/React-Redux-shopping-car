@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { AddNewFab } from '../ui/AddNewFab';
 import { DeleteFab } from '../ui/DeleteFab';
 import { ProductItem } from './ProductItem';
+import { ProductModal } from './ProductModal';
 
 export const ProductsScreen = () => {
 
@@ -18,10 +19,13 @@ export const ProductsScreen = () => {
                     ))
                 }
             </div>
+            
+            <ProductModal />
 
             <DeleteFab />
 
             <AddNewFab />
+
         </>
     )
 }
