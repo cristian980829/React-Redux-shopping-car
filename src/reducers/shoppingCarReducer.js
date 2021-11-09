@@ -2,12 +2,12 @@ import { types } from "../types/types";
 
 export const shoppingInitialState = {
   products: [
-    { id: 1, name: "Producto 1", price: 100 },
-    { id: 2, name: "Producto 2", price: 200 },
-    { id: 3, name: "Producto 3", price: 300 },
-    { id: 4, name: "Producto 4", price: 400 },
-    { id: 5, name: "Producto 5", price: 500 },
-    { id: 6, name: "Producto 6", price: 600 },
+    { id: 1, name: "Leche", price: 100 },
+    { id: 2, name: "Arroz", price: 200 },
+    { id: 3, name: "Pan", price: 300 },
+    { id: 4, name: "Cerveza", price: 400 },
+    { id: 5, name: "Gaseosa", price: 500 },
+    { id: 6, name: "Lentejas", price: 600 },
   ],
   activeProduct: null,
   cart: {
@@ -26,6 +26,14 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
         products: [...state.products, action.payload,]
       }
 
+    case types.EDIT_PRODUCT:
+            return {
+                ...state,
+                products: state.products.map(
+                    e => ( e.id === action.payload.id ) ? action.payload : e
+                )
+            }
+
     case types.PRODUCT_SET_ACTIVE:
       return {
           ...state,
@@ -37,7 +45,6 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
           ...state,
           activeProduct: null
       }
-
 
     case types.ADD_TO_CART: {
       let newItem = state.products.find(

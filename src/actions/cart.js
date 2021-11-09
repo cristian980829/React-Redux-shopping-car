@@ -30,6 +30,13 @@ export const addProduct = (product) =>{
     }
 }
 
+export const editProduct = (product) =>{
+    return {
+        type: types.EDIT_PRODUCT,
+        payload: product
+    }
+}
+
 export const productSetActive = (product) =>{
     return {
         type: types.PRODUCT_SET_ACTIVE,

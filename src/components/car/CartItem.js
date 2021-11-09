@@ -16,7 +16,6 @@ export const CartItem = ({data}) => {
 
     return (
         <tr className="text-center">
-            <th scope="row">{id}</th>
             <td>{name}</td>
             <td>${price}.00</td>
             <td>{quantity}</td>

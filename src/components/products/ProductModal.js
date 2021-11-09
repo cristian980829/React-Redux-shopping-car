@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Modal from 'react-modal';
 import { uiCloseModal } from '../../actions/ui';
-import { addProduct, clearActiveProduct } from '../../actions/cart';
+import { addProduct, clearActiveProduct, editProduct } from '../../actions/cart';
 // import Swal from 'sweetalert2';
 
 // import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
@@ -70,24 +70,14 @@ export const ProductModal = () => {
             return setNameValid(false);
         }
 
-        // if ( activeEvent ) {
-        //     dispatch( eventUpdated( formValues ) )
-        // } else {
-        //     dispatch( eventAddNew({
-        //         ...formValues,
-        //         id: new Date().getTime(),
-        //         user: {
-        //             _id: '123',
-        //             name: 'Fernando'
-        //         }
-        //     }) );
-        // }
-
-        dispatch( addProduct({
+        if ( activeProduct ) {
+            dispatch( editProduct( formValues ) );
+        } else {
+            dispatch( addProduct({
             id: new Date().getTime(),
             ...formValues
         }) );
-
+        }
 
         setNameValid(true);
         closeModal();
@@ -104,7 +94,7 @@ export const ProductModal = () => {
           className="modal"
           overlayClassName="modal-fondo"
         >
-            <h1> { (activeProduct) ? 'Edit product': 'New product' } </h1>
+            <h4> { (activeProduct) ? 'Edit product': 'New product' } </h4>
             <hr />
             <form 
                 className="container"
@@ -138,8 +128,8 @@ export const ProductModal = () => {
                     type="submit"
                     className="btn btn-outline-primary btn-block"
                 >
-                    <i className={`far ${name ? 'fa-edit' : 'fa-save' }`}></i>
-                    <span>{name ? " Edit" : " Save"}</span>
+                    <i className={`far ${activeProduct ? 'fa-edit' : 'fa-save' }`}></i>
+                    <span>{activeProduct ? " Edit" : " Save"}</span>
                 </button>
 
             </form>

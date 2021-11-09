@@ -28,7 +28,6 @@ export const CartScreen = () => {
             <table className="table">
                 <thead className="table-light">
                     <tr className="text-center">
-                        <th scope="col">Id</th>
                         <th scope="col">Description</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>

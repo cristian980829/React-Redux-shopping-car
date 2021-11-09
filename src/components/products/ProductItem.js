@@ -19,11 +19,14 @@ export const ProductItem = ({data}) => {
         dispatch( uiOpenModal() );
     }
 
+    const deleteProduct= (id) => {
+        dispatch( deleteOneProduct(id) );
+    }
+
     return (
         <div className="card">
             <div className="card-body">
-                <h5 className="card-title">Id: {id}</h5>
-                <p className="card-text">{name}</p>
+                <h5 className="card-title">{name}</h5>
                 <span className="card-text">${price}.00</span>
                 <hr/>
 
@@ -33,9 +36,9 @@ export const ProductItem = ({data}) => {
                 <button onClick={() => editProduct(data)} className="btn btn-info btn-block mt-2 ">
                     <i className="fas fa-edit"></i> Edit
                 </button>
-                {/* <button onClick={() => deleteProduct(id)} className="btn btn-danger btn-block mt-2 ">
+                <button onClick={() => deleteProduct(id)} className="btn btn-danger btn-block mt-2 ">
                     <i className="fas fa-trash-alt"></i> Remove
-                </button> */}
+                </button>
             </div>
         </div>
     )
