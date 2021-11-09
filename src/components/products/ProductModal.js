@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Modal from 'react-modal';
 import { uiCloseModal } from '../../actions/ui';
-import { addProduct } from '../../actions/cart';
+import { addProduct, clearActiveProduct } from '../../actions/cart';
 // import Swal from 'sweetalert2';
 
 // import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
@@ -30,7 +30,7 @@ const initProduct = {
 export const ProductModal = () => {
 
     const { modalOpen } = useSelector( state => state.ui );
-    // const { activeEvent } = useSelector( state => state.calendar );
+    const { activeProduct } = useSelector( state => state.shoppingCar );
     const dispatch = useDispatch();
 
     const [ nameValid, setNameValid ] = useState(true);
@@ -39,13 +39,13 @@ export const ProductModal = () => {
 
     const { name, price } = formValues;
 
-    // useEffect(() => {
-    //     if ( activeEvent ) {
-    //         setFormValues( activeEvent );
-    //     } else {
-    //         setFormValues( initEvent );
-    //     }
-    // }, [activeEvent, setFormValues])
+    useEffect(() => {
+        if ( activeProduct ) {
+            setFormValues( activeProduct );
+        } else {
+            setFormValues( initProduct );
+        }
+    }, [activeProduct, setFormValues])
 
 
 
@@ -58,9 +58,8 @@ export const ProductModal = () => {
 
 
     const closeModal = () => {
-        // TODO: cerrar el modal
         dispatch( uiCloseModal() );
-        // dispatch( eventClearActiveEvent() );
+        dispatch( clearActiveProduct() );
         setFormValues( initProduct );
     }
 
@@ -105,8 +104,7 @@ export const ProductModal = () => {
           className="modal"
           overlayClassName="modal-fondo"
         >
-            <h4>Add product</h4>
-            {/* <h1> { (activeProduct)? 'Editar producto': 'Nuevo producto' } </h1> */}
+            <h1> { (activeProduct) ? 'Edit product': 'New product' } </h1>
             <hr />
             <form 
                 className="container"
@@ -127,7 +125,7 @@ export const ProductModal = () => {
                 <div className="form-group">
                     <input 
                         type="number" 
-                        className={ `form-control ${ !nameValid && 'is-invalid' } `}
+                        className='form-control'
                         placeholder="Price"
                         name="price"
                         autoComplete="off"
@@ -140,8 +138,8 @@ export const ProductModal = () => {
                     type="submit"
                     className="btn btn-outline-primary btn-block"
                 >
-                    <i className="far fa-save"></i>
-                    <span> Save</span>
+                    <i className={`far ${name ? 'fa-edit' : 'fa-save' }`}></i>
+                    <span>{name ? " Edit" : " Save"}</span>
                 </button>
 
             </form>

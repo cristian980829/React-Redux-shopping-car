@@ -9,6 +9,7 @@ export const shoppingInitialState = {
     { id: 5, name: "Producto 5", price: 500 },
     { id: 6, name: "Producto 6", price: 600 },
   ],
+  activeProduct: null,
   cart: {
     list: [],
     totalQuantity: 0
@@ -23,6 +24,18 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
       return {
         ...state,
         products: [...state.products, action.payload,]
+      }
+
+    case types.PRODUCT_SET_ACTIVE:
+      return {
+          ...state,
+          activeProduct: action.payload
+      }
+
+    case types.CLEAR_ACTIVE_PRODUCT:
+      return {
+          ...state,
+          activeProduct: null
       }
 
 

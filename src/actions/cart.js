@@ -29,3 +29,12 @@ export const addProduct = (product) =>{
         payload: product
     }
 }
+
+export const productSetActive = (product) =>{
+    return {
+        type: types.PRODUCT_SET_ACTIVE,
+        payload: product
+    }
+}
+
+export const clearActiveProduct = () => ({ type: types.CLEAR_ACTIVE_PRODUCT });
