@@ -1,12 +1,14 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { shoppingCarReducer } from '../reducer/shoppingCarReducer';
+import { shoppingCarReducer } from '../reducers/shoppingCarReducer';
+import { uiReducer } from '../reducers/uiReducer';
 
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const reducers = combineReducers({
-    shoppingCar: shoppingCarReducer
+    shoppingCar: shoppingCarReducer,
+    ui: uiReducer
 });
 
 
