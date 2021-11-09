@@ -22,3 +22,10 @@ export const clearCart = () => (
 export const deleteOneProduct = (id) => (
     { type: types.REMOVE_ONE_PRODUCT, payload: id}
 )
+
+export const addProduct = (product) =>{
+    return {
+        type: types.ADD_PRODUCT,
+        payload: product
+    }
+}

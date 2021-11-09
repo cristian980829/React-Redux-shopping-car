@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Modal from 'react-modal';
 import { uiCloseModal } from '../../actions/ui';
+import { addProduct } from '../../actions/cart';
 // import Swal from 'sweetalert2';
 
 // import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
@@ -22,8 +23,7 @@ Modal.setAppElement('#root');
 
 const initProduct = {
     name: '',
-    price: 0,
-    quantity: 0
+    price: 0
 }
 
 
@@ -37,7 +37,7 @@ export const ProductModal = () => {
     
     const [formValues, setFormValues] = useState( initProduct );
 
-    const { name, price, quantity } = formValues;
+    const { name, price } = formValues;
 
     // useEffect(() => {
     //     if ( activeEvent ) {
@@ -84,6 +84,11 @@ export const ProductModal = () => {
         //     }) );
         // }
 
+        dispatch( addProduct({
+            id: new Date().getTime(),
+            ...formValues
+        }) );
+
 
         setNameValid(true);
         closeModal();
@@ -126,7 +131,7 @@ export const ProductModal = () => {
                         placeholder="Price"
                         name="price"
                         autoComplete="off"
-                        value={ name }
+                        value={ price }
                         onChange={ handleInputChange }
                     />
                 </div>

@@ -18,6 +18,14 @@ export const shoppingInitialState = {
 export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
 
     switch (action.type) {
+
+    case types.ADD_PRODUCT: 
+      return {
+        ...state,
+        products: [...state.products, action.payload,]
+      }
+
+
     case types.ADD_TO_CART: {
       let newItem = state.products.find(
         (product) => product.id === action.payload
