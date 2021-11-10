@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import {
     BrowserRouter as Router,
@@ -9,6 +10,13 @@ import {
 import { DashboardRoutes } from './DashboardRoutes';
 
 export const AppRouter = () => {
+
+    const state = useSelector( state => state.shoppingCar );
+
+    useEffect( ()=> {
+        localStorage.setItem('shoppingCar', JSON.stringify( state ) );
+    }, [state]);
+
     return (
         <>
             <Router>

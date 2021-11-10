@@ -1,22 +1,19 @@
 import { types } from "../types/types";
 
-export const shoppingInitialState = {
-  products: [
-    { id: 1, name: "Leche", price: 100 },
-    { id: 2, name: "Arroz", price: 200 },
-    { id: 3, name: "Pan", price: 300 },
-    { id: 4, name: "Cerveza", price: 400 },
-    { id: 5, name: "Gaseosa", price: 500 },
-    { id: 6, name: "Lentejas", price: 600 },
-  ],
+const init = { 
+  products: [],
   activeProduct: null,
   cart: {
     list: [],
     totalQuantity: 0
-  },
+  } 
+}
+
+export const shoppingInitialState = () => {
+  return JSON.parse(localStorage.getItem('shoppingCar')) || init
 };
 
-export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
+export const shoppingCarReducer = ( state = shoppingInitialState(), action ) => {
 
     switch (action.type) {
 
@@ -110,7 +107,13 @@ export const shoppingCarReducer = ( state = shoppingInitialState, action ) => {
     }
 
     case types.CLEAR_CART:
-      return shoppingInitialState;
+      return {
+          ...state,
+          cart: {
+            list: [],
+            totalQuantity: 0
+          } 
+      };
 
     case types.REMOVE_ONE_PRODUCT: {
       const itemInCart = state.cart.list.find((item) => item.id === action.payload);
