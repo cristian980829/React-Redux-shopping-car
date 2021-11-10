@@ -8,7 +8,6 @@ export const AddNewFab = () => {
 
     const handleClickNew = () => {
         dispatch( uiOpenModal() );
-        console.log('funcionando!')
     }
 
 

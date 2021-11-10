@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { addToCart, deleteOneProduct, productSetActive } from "../../actions/cart";
 import { uiOpenModal } from '../../actions/ui';
 
-export const ProductItem = ({data}) => {
+export const ProductItem = ({data, list=false}) => {
 
     const dispatch = useDispatch();
 
@@ -42,22 +42,32 @@ export const ProductItem = ({data}) => {
     }
 
     return (
-        <div className="card">
-            <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                <span className="card-text">${price}.00</span>
-                <hr/>
+        <>
+        {list 
+            ? <div className="card">
+                <div className="card-body text-center">
+                    <h5 className="card-title">{name}</h5>
+                    <span className="card-text">${price}.00</span>
+                    <hr/>
 
-                <button onClick={ () => addToCart_(id) } className="btn btn-success btn-block mt-2 ">
-                    <i className="fas fa-cart-plus"></i> Add to car
-                </button>
-                <button onClick={() => editProduct(data)} className="btn btn-info btn-block mt-2 ">
-                    <i className="fas fa-edit"></i> Edit
-                </button>
-                <button onClick={() => deleteProduct(id)} className="btn btn-danger btn-block mt-2 ">
-                    <i className="fas fa-trash-alt"></i> Remove
-                </button>
+                    <button onClick={ () => addToCart_(id) } className="btn btn-success btn-block mt-2 ">
+                        <i className="fas fa-cart-plus"></i> Add to car
+                    </button>
+                </div>
             </div>
-        </div>
+            : <tr className="text-center">
+                <td>{name}</td>
+                <td>${price}.00</td>
+                <td>
+                    <button onClick={() => editProduct(data)} className="btn btn-info btn-sm mr-2">
+                        <i className="fas fa-edit"></i>
+                    </button>
+                    <button onClick={() => deleteProduct(id)} className="btn btn-danger btn-sm">
+                        <i className="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+        </>
     )
 }

@@ -44,11 +44,11 @@ export const shoppingCarReducer = ( state = shoppingInitialState(), action ) => 
       }
 
     case types.ADD_TO_CART: {
-      let newItem = state.products.find(
+      const newItem = state.products.find(
         (product) => product.id === action.payload
       );
 
-      let itemInCart = state.cart.list.find((item) => item.id === newItem.id);
+      const itemInCart = state.cart.list.find((item) => item.id === newItem.id);
       
       return itemInCart
         ? {
@@ -72,7 +72,7 @@ export const shoppingCarReducer = ( state = shoppingInitialState(), action ) => 
     }
 
     case types.REMOVE_ONE_FROM_CART: {
-      let itemToDelete = state.cart.list.find((item) => item.id === action.payload);
+      const itemToDelete = state.cart.list.find((item) => item.id === action.payload);
 
       return itemToDelete.quantity > 1
         ? {
@@ -96,8 +96,6 @@ export const shoppingCarReducer = ( state = shoppingInitialState(), action ) => 
     }
 
     case types.ADD_ONE_FROM_CART: {
-      // let itemToDelete = state.cart.list.find((item) => item.id === action.payload);
-
       return {
             ...state,
             cart: {

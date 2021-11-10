@@ -38,7 +38,21 @@ export const Navbar = () => {
                         exact
                         to="/products"
                     >
-                        Products
+                        Product
+                    </NavLink>
+                </div>
+            </div>
+
+            <div className="navbar-collapse">
+                <div className="navbar-nav">
+
+                    <NavLink 
+                        activeClassName="active"
+                        className="nav-item nav-link" 
+                        exact
+                        to="/productslist"
+                    >
+                        Product_List
                     </NavLink>
                 </div>
             </div>

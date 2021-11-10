@@ -11,13 +11,22 @@ export const ProductsScreen = () => {
     return (
         <>
             <h3>Products</h3>
-            <div className="card-columns mt-4">
+            <table className="table">
+                <thead className="table-light">
+                    <tr className="text-center">
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {
                     products.map((product) => (
                         <ProductItem key={product.id} data={product} />
                     ))
                 }
-            </div>
+                </tbody>
+            </table>
 
             <ProductModal />
 
