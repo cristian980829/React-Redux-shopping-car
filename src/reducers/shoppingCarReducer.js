@@ -24,12 +24,33 @@ export const shoppingCarReducer = ( state = shoppingInitialState(), action ) => 
       }
 
     case types.EDIT_PRODUCT:
-            return {
-                ...state,
-                products: state.products.map(
-                    e => ( e.id === action.payload.id ) ? action.payload : e
-                )
+      const itemInCart = state.cart.list.find(
+        (product) => product.id === action.payload.id
+      );
+
+      return itemInCart 
+        ?
+          {
+            ...state,
+            products: state.products.map(
+                e => ( e.id === action.payload.id ) ? action.payload : e
+            ),
+            cart: {
+              list: state.cart.list.map((item) =>
+                item.id === itemInCart.id
+                  ? {...action.payload, quantity: itemInCart.quantity}
+                  : item
+              ),
+              totalQuantity: state.cart.totalQuantity
             }
+          }
+        :
+          {
+            ...state,
+            products: state.products.map(
+                e => ( e.id === action.payload.id ) ? action.payload : e
+            )
+          }
 
     case types.PRODUCT_SET_ACTIVE:
       return {
