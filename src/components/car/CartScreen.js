@@ -6,11 +6,11 @@ import { clearCart } from '../../actions/cart';
 
 
 export const CartScreen = () => {
-
+    
     const dispatch = useDispatch();
     
     const { list } = useSelector( state => state.shoppingCar.cart );
-
+    
     const clearCart_ = () => {
         dispatch( clearCart() );
     }
@@ -24,36 +24,41 @@ export const CartScreen = () => {
     return (
         <>
             <h3>Cart</h3>
-            <button onClick={clearCart_} className="btn btn-success mt-3 mb-2">Clean cart</button>
-            <table className="table">
-                <thead className="table-light">
-                    <tr className="text-center">
-                        <th scope="col">Description</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Total price</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {
-                    list.map((product) => (
-                        <CartItem key={product.id} data={product} />
-                    ))
-                }
-                </tbody>
-            </table>
+            {list.length > 0 ? 
+                <div>
+                    <button onClick={clearCart_} className="btn btn-success mt-3 mb-2">Clean cart</button>
+                    <table className="table">
+                        <thead className="table-light">
+                            <tr className="text-center">
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total price</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            list.map((product) => (
+                                <CartItem key={product.id} data={product} />
+                            ))
+                        }
+                        </tbody>
+                    </table>
 
-            <hr/>
+                    <hr/>
 
-            <div className="row">
-                <div className="col-md-1">
-                    <h5>Total: </h5> 
-                </div>
-                <div className="col"> 
-                    <span>${total}.00</span>
-                </div>
+                    <div className="row">
+                        <div className="col-md-1">
+                            <h5>Total: </h5> 
+                        </div>
+                        <div className="col"> 
+                            <span>${total}.00</span>
+                        </div>
+                    </div>
             </div>
+                : <div><span>No products in cart.</span></div>
+            }
         </>
     )
 }
