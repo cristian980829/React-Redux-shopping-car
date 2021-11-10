@@ -79,9 +79,9 @@ export const shoppingCarReducer = ( state = shoppingInitialState(), action ) => 
             ...state,
             cart: {
               list: state.cart.list.map((item) =>
-              item.id === action.payload
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
+                item.id === action.payload
+                  ? { ...item, quantity: item.quantity - 1 }
+                  : item
             ),
             totalQuantity: state.cart.totalQuantity - 1
             },
@@ -93,6 +93,22 @@ export const shoppingCarReducer = ( state = shoppingInitialState(), action ) => 
               totalQuantity: state.cart.totalQuantity - 1
             },
           };
+    }
+
+    case types.ADD_ONE_FROM_CART: {
+      // let itemToDelete = state.cart.list.find((item) => item.id === action.payload);
+
+      return {
+            ...state,
+            cart: {
+              list: state.cart.list.map((item) =>
+                item.id === action.payload
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+            ),
+            totalQuantity: state.cart.totalQuantity + 1
+            },
+          }
     }
 
     case types.REMOVE_ALL_FROM_CART: {

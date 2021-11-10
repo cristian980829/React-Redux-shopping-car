@@ -7,6 +7,10 @@ export const addToCart = (id) =>{
     }
 }
 
+export const addOneFromCart = (id) => (
+    { type: types.ADD_ONE_FROM_CART, payload: id}
+)
+
 export const deleteOneFromCart = (id) => (
     { type: types.REMOVE_ONE_FROM_CART, payload: id}
 )
