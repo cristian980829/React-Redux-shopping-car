@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route
 } from 'react-router-dom';
@@ -18,16 +18,14 @@ export const AppRouter = () => {
     }, [state]);
 
     return (
-        <>
-            <Router>
-                <div>
-                    <Switch> 
-                        
-                        <Route path="/" component={ DashboardRoutes } />
+        <Router basename={process.env.PUBLIC_URL}>
+            <div>
+                <Switch> 
+                    
+                    <Route path="/" component={ DashboardRoutes } />
 
-                    </Switch>
-                </div>
-            </Router>
-        </>
+                </Switch>
+            </div>
+        </Router>
     )
 }

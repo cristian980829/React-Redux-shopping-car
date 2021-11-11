@@ -57,7 +57,7 @@ export const Navbar = () => {
                 </div>
             </div>
 
-            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <div className="navbar-collapse w-100 order-3 dual-collapse2">
                 <ul className="navbar-nav ml-auto">
                     <NavLink 
                         activeClassName="active"
@@ -65,12 +65,11 @@ export const Navbar = () => {
                         exact
                         to="/car"
                     >
-
-                    <IconButton aria-label="cart">
-                        <StyledBadge badgeContent={totalQuantity} color="primary">
-                            <ShoppingCartIcon color="primary"/>
-                        </StyledBadge>
-                    </IconButton>
+                        <IconButton aria-label="cart">
+                            <StyledBadge badgeContent={totalQuantity} color="primary">
+                                <ShoppingCartIcon color="primary"/>
+                            </StyledBadge>
+                        </IconButton>
                     </NavLink>
                 </ul>
             </div>
